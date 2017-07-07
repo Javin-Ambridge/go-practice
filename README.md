@@ -18,7 +18,7 @@
 
 Or, directly import it like so: `import pkgShorthand "pkgName";`
 
-**Interesting Go Tricks**
+**Interesting Go Tricks:**
 
  1. **Exploding an array:** If a function has two parameters like so `func foo(i int, k int)` and you want to pass the function an array that you have dynamically set up you can do this by exploding the array:
 			  

@@ -10,6 +10,10 @@ func FunctionEx() {
 	fmt.Println("num1: ", num1, ". num2: ", num2);
 	mySlice := []int64 {12, -10, 100000, 12314, -9999, 9897612};
 	fmt.Println(minAndMax(mySlice...));
+	closureEx();
+	fmt.Println(recoverEx(3, 0));
+	fmt.Println(recoverEx(3, 1));
+	panicEx();
 }
 
 func returnTwoNums() (int, int) {
@@ -33,4 +37,28 @@ func minAndMax(args ...int64) (int64, int64) {
 		}
 	}
 	return min, max;
+}
+
+func closureEx() {
+	num1 := 1;
+	doubleNum := func() int {
+		num1 *= 2;
+		return num1;
+	}
+	fmt.Println(doubleNum(), doubleNum());
+}
+
+func recoverEx(num1, num2 int) int {
+	defer func() {
+		recover(); //doesnt crash
+	}();
+	solution := num1 / num2;
+	return solution;
+}
+
+func panicEx() {
+	defer func() {
+		fmt.Println(recover());
+	}();
+	panic("FAKE PANIC ERROR1!");
 }
