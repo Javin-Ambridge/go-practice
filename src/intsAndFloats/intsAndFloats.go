@@ -3,10 +3,13 @@ package intsAndFloats;
 import (
 	"fmt";
 	div "divider";
+	tp "titlePrint";
 );
 
 func IntsAndFloats() {
 	defer div.PrintDivider();
+	tp.TitlePrint("Ints and Floats");
+
 	// An int is a positive or negative number without decimals
 	// Versions
 	// uint8 : unsigned  8-bit integers (0 to 255)

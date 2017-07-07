@@ -1,10 +1,15 @@
 package maps;
 
-import "fmt";
-import div "divider";
+import (
+	"fmt";
+	div "divider";
+	tp "titlePrint";
+);
 
 func MapEx() {
 	defer div.PrintDivider();
+	tp.TitlePrint("Maps");
+
 	//Make a map with a string key, and int value.
 	myMap := make(map[string] int);
 

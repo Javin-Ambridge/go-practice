@@ -3,10 +3,13 @@ package arraysEx;
 import (
 	"fmt";
 	div "divider";
+	tp "titlePrint";
 );
 
 func ArrayEx() {
 	defer div.PrintDivider();
+	tp.TitlePrint("Arrays");
+
 	myArr := [5]int8 {1,2,3,4,5};
 	for i := 0; i < len(myArr); i++ {
 		fmt.Println("at myArr[", i, "]=", myArr[i]);

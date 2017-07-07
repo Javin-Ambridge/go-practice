@@ -1,10 +1,15 @@
 package functions;
 
-import "fmt";
-import div "divider";
+import (
+	"fmt";
+	div "divider";
+	tp "titlePrint";
+);
 
 func FunctionEx() {
 	defer div.PrintDivider();
+	tp.TitlePrint("Functions");
+
 	//multiple return values.
 	num1, num2 := returnTwoNums();
 	fmt.Println("num1: ", num1, ". num2: ", num2);
