@@ -11,6 +11,8 @@ import (
 	pointer "pointers";
 	stru "structs";
 	interf "interfaces";
+	file "files";
+	serv "server";
 );
 
 func main() {
@@ -24,5 +26,7 @@ func main() {
 	pointer.PointerEx();
 	stru.StructsEx();
 	interf.InterfacesEx();
+	file.FilesEx();
+	serv.ServerEx();
 }
 
