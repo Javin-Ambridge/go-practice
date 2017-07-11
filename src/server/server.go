@@ -6,7 +6,6 @@ import (
 	tp "titlePrint";
 	"net/http";
 	"github.com/justinas/alice";
-	"log";
 	"time";
 );
 
@@ -14,6 +13,8 @@ type returnType struct {
 	name string;
 	slice []string;
 }
+var ch chan string;
+var MAX_WORKERS int = 4;
 
 func ServerEx() {
 	defer div.PrintDivider();
@@ -22,6 +23,10 @@ func ServerEx() {
 	fmt.Println("Middleware added:");
 	fmt.Println("loggingHandler");
 	div.PrintDivider();
+
+	ch = make(chan string);
+
+	go createWorkers(ch);
 
 	//Adding some middleware
 	middleWare := alice.New(loggingHandler);
@@ -38,6 +43,7 @@ func defaultRoute(w http.ResponseWriter, r *http.Request) {
 		name: "temp return",
 		slice: []string{"a", "b"},
 	};
+	ch <- "test1";
 	fmt.Fprint(w, tmp);
 }
 
@@ -54,10 +60,24 @@ func loggingHandler(next http.Handler) http.Handler {
 		//log.Println("Request: ", r);
 		t1 := time.Now();
 		next.ServeHTTP(w, r);
-		go func() {
-			t2 := time.Now();
-			log.Printf("[%s] %q %v\n", r.Method, r.URL.String(), t2.Sub(t1));
-		}();
+		t2 := time.Now();
+		ch <- fmt.Sprintf("[%s] %q %v\n", r.Method, r.URL.String(), t2.Sub(t1));
 	}
 	return http.HandlerFunc(fn);
+}
+
+func createWorkers(ch chan string) {
+	for i := 0; i < MAX_WORKERS; i++ {
+		go worker(ch);
+	}
+}
+
+func worker(ch chan string) {
+	for {
+		val, ok := <-ch;
+		if !ok {
+			return;
+		}
+		fmt.Println("val", val);
+	}
 }
