@@ -6,6 +6,7 @@ import (
 	tp "titlePrint";
 	"strings";
 	"sort";
+	"strconv";
 );
 
 func StringsEx() {
@@ -25,6 +26,7 @@ func builtInStringFnc() {
 	fmt.Println(strings.Contains(str, "Hello"));
 	fmt.Println(strings.Index(str, "hello"));
 	fmt.Println(strings.Count(str, "hello"));
+
 	//replace hello with test for first 3 instances
 	fmt.Println(strings.Replace(str, "hello", "test", 3));
 
@@ -32,6 +34,11 @@ func builtInStringFnc() {
 	splitExArr := strings.Split(splitEx, " ");
 	fmt.Println("splitExArr: ", splitExArr, "and", splitExArr[0]);
 	fmt.Println("join ex: ", strings.Join([]string {"this", "is", "a", "test"}, " "));
+
+	//string + number
+	num := 1;
+	str2 := "string #" + strconv.Itoa(num);
+	fmt.Println("string: ", str2);
 }
 
 func sortEx() {
