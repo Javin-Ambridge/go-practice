@@ -1,3 +1,8 @@
+**How to change GOPATH**
+
+ 1. Create or update a file at `~/.bash_profile`
+ 2. Add the following line `export GOPATH=~/Documents/GoPractice/`
+
 **How to install/create a package:**
 
  1. Create a file inside `src/`
